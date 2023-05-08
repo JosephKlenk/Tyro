@@ -1,0 +1,60 @@
+.appContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.journal {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  box-sizing: border-box;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.journalTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.editorContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
+.newEntryTextarea {
+  width: 800px; /* fixed width */
+  height: 200px;
+  padding: 1rem;
+  box-sizing: border-box;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+  resize: none;
+}
+
+.addButton {
+  background-color: #333;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.addButton:hover {
+  background-color: #555;
+}
+
+.entriesContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

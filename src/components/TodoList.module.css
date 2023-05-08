@@ -1,0 +1,76 @@
+.todoListContainer {
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.listButton {
+  background-color: #333;
+  border: none;
+  border-radius: 4px;
+  color: #e0e0e0;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 5px 0;
+  margin-left: 10px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.listButton:hover {
+  background-color: #555;
+}
+
+.deleteListButton {
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ff4f4f;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.deleteListButton:hover {
+  opacity: 0.8;
+}
+
+.todoTitle {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.todoItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.todoCheckbox {
+  margin-right: 10px;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.deleteButton {
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ff4f4f;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.deleteButton:hover {
+  opacity: 0.8;
+}

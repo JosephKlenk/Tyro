@@ -1,0 +1,100 @@
+.menu2 {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    text-size-adjust: 100%;
+    font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    color: #757763;
+    font-weight: 400;
+    line-height: 1.5;
+    box-sizing: inherit;
+    display: block;
+    font-size: 1rem;
+    background-color: hsl(0deg, 0%, 21%) !important;
+    padding: 0.75rem !important;
+    height: 110%;
+	width: 7.1%;
+}
+
+.menu2-label{
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    text-size-adjust: 100%;
+    font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+    color: #d0d1cd;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1em;
+}
+
+.menu2-list {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    text-size-adjust: 100%;
+    font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    color: #757763;
+    font-weight: 400;
+    font-size: 1rem;
+    list-style: none;
+    line-height: 1.25;
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+.menu2-list li a {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    text-size-adjust: 100%;
+    font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    list-style: none;
+    line-height: 1.25;
+    box-sizing: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    color: hsl(0deg, 0%, 93%);
+    display: block;
+    border-radius: 0;
+    padding: 0.75rem;
+}
+
+.menu2-list a.is-active {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    text-size-adjust: 100%;
+    font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    list-style: none;
+    line-height: 1.25;
+    box-sizing: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    border-radius: 0;
+    padding: 0.75rem;
+    background-color: transparent;
+    color: #479aff;
+}
+
+.menu2-list a:hover {
+background-color: white;
+color: black;
+}
+
+.menu2-list a.is-active:hover {
+    background-color: transparent;
+    color: #479aff;
+}
+
+.menu2-list a:hover {
+    background-color: white;
+    color: black;
+}

@@ -1,0 +1,168 @@
+import React, { useState, useEffect } from "react";
+import { db } from "../firebase/firebase";
+import AddToDo from "./AddToDo";
+import AddTodoList from "./AddTodoList";
+import styles from "./TodoList.module.css";
+
+interface TodoListProps {
+  user: any;
+}
+
+const TodoList: React.FC<TodoListProps> = ({ user }) => {
+  const [todoLists, setTodoLists] = useState<{ id: string; name: string }[]>([]);
+  const [selectedListId, setSelectedListId] = useState<string | null>(null);
+  const [todos, setTodos] = useState<{ id: string; title: string; completed: boolean }[]>([]);
+
+  useEffect(() => {
+    if (!user) return;
+
+    const unsubscribe = db
+      .collection("users")
+      .doc(user.uid)
+      .collection("todoLists")
+      .onSnapshot((snapshot) => {
+        const lists = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          name: doc.data().name,
+        }));
+        setTodoLists(lists);
+      });
+
+    return () => unsubscribe();
+  }, [user]);
+
+  useEffect(() => {
+    if (!user || !selectedListId) return;
+
+    const unsubscribe = db
+      .collection("users")
+      .doc(user.uid)
+      .collection("todoLists")
+      .doc(selectedListId)
+      .collection("todos")
+      .onSnapshot((snapshot) => {
+        const newTodos = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          title: doc.data().title,
+          completed: doc.data().completed,
+        }));
+        setTodos(newTodos);
+      });
+
+    return () => unsubscribe();
+  }, [user, selectedListId]);
+
+  const addTodoList = (name: string) => {
+    if (!user) return;
+
+    db.collection("users")
+      .doc(user.uid)
+      .collection("todoLists")
+      .add({ name });
+  };
+
+  const deleteTodoList = (listId: string) => {
+    if (!user) return;
+
+    db.collection("users")
+      .doc(user.uid)
+      .collection("todoLists")
+      .doc(listId)
+      .delete()
+      .catch((error) => {
+        console.error("Error deleting todo list: ", error);
+		toast.error("Error deleting todo list");
+      });
+  };
+
+  const addTodo = (title: string) => {
+    if (!user || !selectedListId) return;
+
+    db.collection("users")
+      .doc(user.uid)
+      .collection("todoLists")
+      .doc(selectedListId)
+      .collection("todos")
+      .add({ title, completed: false });
+  };
+
+  const toggleTodo = (id: string) => {
+    if (!user || !selectedListId) return;
+
+    const todoRef = db
+      .collection("users")
+      .doc(user.uid)
+      .collection("todoLists")
+      .doc(selectedListId)
+      .collection("todos")
+      .doc(id);
+
+    todoRef.get().then((doc) => {
+      if (doc.exists) {
+        todoRef.update({
+          completed: !doc.data()?.completed,
+        });
+      }
+    });
+  };
+
+  const deleteTodo = (id: string) => {
+    if (!user || !selectedListId) return;
+
+    db.collection("users")
+      .doc(user.uid)
+      .collection("todoLists")
+      .doc(selectedListId)
+      .collection("todos")
+      .doc(id)
+      .delete()
+      .catch((error) => {
+        console.error("Error deleting todo: ", error);
+		toast.error("Error deleting todo");
+      });
+  };
+
+  return (
+    <div>
+      <AddTodoList onAdd={addTodoList} />
+      {todoLists.map((list) => (
+        <div key={list.id}>
+          <button onClick={() => setSelectedListId(list.id)} className={styles.listButton}>
+            {list.name}
+          </button>
+          <button className={styles.deleteListButton} onClick={() => deleteTodoList(list.id)}>
+            X
+          </button>
+        </div>
+      ))}
+      {selectedListId && (
+        <div className={styles.todoListContainer}>
+          <h2 className={styles.todoTitle}>
+            {todoLists.find((list) => list.id === selectedListId)?.name}
+          </h2>
+          <AddToDo onCreate={addTodo} />
+          <ul>
+            {todos.map((todo) => (
+              <li key={todo.id} className={styles.todoItem}>
+                <input
+                  type="checkbox"
+                  checked={todo.completed}
+                  onChange={() => toggleTodo(todo.id)}
+                  className={styles.todoCheckbox}
+                />
+                <span className={todo.completed ? styles.completed : ""}>
+                  {todo.title}
+                </span>
+                <button className={styles.deleteButton} onClick={() => deleteTodo(todo.id)}>
+                  X
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default TodoList;

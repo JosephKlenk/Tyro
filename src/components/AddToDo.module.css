@@ -1,0 +1,18 @@
+.addButton {
+  background-color: #333;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color:#e0e0e0;
+  font-size: 1rem;
+  margin-top: 10px;
+  margin-left: 10px;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.addButton:hover {
+  background-color: #555;
+}
